@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Theme Colors */
+  --neon-blue: #00FFFF;
+  --neon-blue-rgb: 0, 255, 255;
+  --neon-green: #00FF85;
+  --neon-green-rgb: 0, 255, 133;
+  --neon-pink: #FF4C9D;
+  --neon-pink-rgb: 255, 76, 157;
+  --deep-black: #000000;
+  --charcoal: #111111;
+  --light-gray: #CCCCCC;
+
+  color-scheme: light dark;
+}
+
+/* Dark mode by default */
+:root {
+  --bg-primary: var(--deep-black);
+  --bg-secondary: var(--charcoal);
+  --text-primary: #FFFFFF;
+  --text-secondary: var(--light-gray);
+  --accent-primary: var(--neon-blue);
+  --accent-primary-rgb: var(--neon-blue-rgb);
+  --accent-secondary: var(--neon-pink);
+}
+
+/* Light mode variables */
+:root[data-theme="light"] {
+  --bg-primary: #F3F6F9;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #0A1929;
+  --text-secondary: #3E5060;
+  --accent-primary: #0090FF;
+  --accent-primary-rgb: 0, 144, 255;
+  --accent-secondary: #FF4C9D;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Gradient text utilities */
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--neon-pink), var(--neon-blue));
+}
+
+.gradient-text-alt {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--neon-blue), var(--neon-green));
+}
+
+/* Neon glow effects */
+.neon-glow {
+  box-shadow: 0 0 10px var(--accent-primary),
+              0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.neon-text {
+  text-shadow: 0 0 8px var(--accent-primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px var(--accent-primary); }
+  50% { box-shadow: 0 0 20px var(--accent-primary); }
+  100% { box-shadow: 0 0 5px var(--accent-primary); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+.animate-glow {
+  animation: glowPulse 2s infinite;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 255, 255, 0.1),
+              0 8px 10px -6px rgba(0, 255, 255, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Custom utilities */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out neon-glow;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-primary);
+    background-color: var(--bg-secondary);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out;
+    color: var(--accent-primary);
+    background-color: rgba(var(--accent-primary-rgb), 0.1);
+    border: 1px solid transparent;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(var(--accent-primary-rgb), 0.2);
+  }
+
+  .card {
+    @apply rounded-lg p-6 hover-lift transition-all duration-300;
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(var(--accent-primary-rgb), 0.1);
+  }
+
+  .card:hover {
+    border-color: rgba(var(--accent-primary-rgb), 0.3);
+  }
+
+  .input-field {
+    @apply w-full rounded-md bg-[var(--bg-secondary)] shadow-sm sm:text-sm transition-all duration-200;
+    border: 1px solid;
+    border-color: var(--accent-primary);
+    border-opacity: 0.2;
+    color: var(--text-primary);
+  }
+
+  .input-field:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px var(--accent-primary);
+    outline: none;
+  }
+}
