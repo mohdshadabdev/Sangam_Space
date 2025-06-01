@@ -9,4 +9,4 @@ More updates, features, and club integrations will be added soon.
 You can try its limited features on https://sangamspaces.netlify.app/
 
 
-Stay tuned! 🙌  
+Stay tuned..!! 🙌  
