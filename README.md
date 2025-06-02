@@ -11,4 +11,4 @@ You can try its limited features on https://sangamspaces.netlify.app/
 
 Stay tuned..!! 🙌  
 
-Thankyou 
+Thankyou..
